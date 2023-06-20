@@ -1,0 +1,41 @@
+body{
+    background-image: url(https://wallpaperaccess.com/full/20997.jpg);
+    background-size: cover;
+
+}
+#nav{
+    background-image:url(https://wallpaperaccess.com/full/20997.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+ }
+body div h2{
+    color: rgba(213, 102, 23, 0.811);
+    background-color: rgba(197, 75, 10, 0.121);
+    border-radius: 30px;
+
+}
+body h5{
+    color: rgba(213, 102, 23, 0.811);
+    background-color: rgba(197, 75, 10, 0.121);
+    border-radius: 30px;
+    font-size: 30px;
+
+}
+#navbarSupportedContent ul li a{
+    color: rgba(213, 102, 23, 0.811);
+}
+#navbarSupportedContent ul li a:hover{
+    color: rgba(157, 76, 18, 0.811);
+}
+
+#card{
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+#currentuser{
+    color: blue;
+    margin-right: 10px;
+}
