@@ -1,9 +1,12 @@
 {% include 'navbar.html' %}
-
-{% block content %}
-
-
-
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon app (HOME)</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
 <h5 style="text-align: center; margin: 90px 0px 120px 0px;">Welcome to my pokemon page type any pokemon you want AND get
     all the information about it</h5>
 <div class="container">
@@ -13,18 +16,14 @@
                 <div class="card-body ">
                     {{ form.hidden_tag() }}
                     <div style="margin: 10px;">{{ form.username(class="form-control", placeholder='Username') }} </div>
-                       <div style="margin: 10px;"> {{ form.password(class="form-control", placeholder='Password') }}</div>
-                   
+                    <div style="margin: 10px;"> {{ form.password(class="form-control", placeholder='Password') }}</div>
+
                     <div style="text-align: center; margin-top: 20px;">{{ form.Log_IN(class="btn btn-dark") }}</div>
                 </div>
             </div>
     </div>
     </form>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+    </script>
 </div>
-</div>
-
-
-
-
-
-{% endblock %}

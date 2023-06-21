@@ -1,12 +1,16 @@
 body{
     background-image: url(https://wallpaperaccess.com/full/20997.jpg);
-    background-size: cover;
+    background-size:cover;
+    background-size: 100%;
+    /* background-repeat: no-repeat; */
+
+    
 
 }
 #nav{
     background-image:url(https://wallpaperaccess.com/full/20997.jpg);
     background-size: cover;
-    background-repeat: no-repeat;
+    
  }
 body div h2{
     color: rgba(213, 102, 23, 0.811);
@@ -37,5 +41,14 @@ body h5{
 }
 #currentuser{
     color: blue;
-    margin-right: 10px;
+    margin-right: 15px;
+}
+
+#search_bar{
+    
+}
+#search{
+    height: 40px;
+    margin-top: 10px;
+    background-color: rgba(136, 57, 48, 0.819);
 }
