@@ -1,0 +1,121 @@
+    # poke_name = name
+    # url = f'https://pokeapi.co/api/v2/pokemon/{poke_name}'
+    # response = requests.get(url)
+    # if response.ok:
+    #     data = response.json()
+    #     char={}
+    #     char['pok_name']=data['forms'][0]['name']
+    #     char['pok_hp']=data['stats'][0]['base_stat']
+    #     char['pok_attack']=data['stats'][1]['base_stat']
+    #     char['pok_defense']=data['stats'][2]['base_stat']
+    #     char['pok_ability']=(data['abilities'][0]['ability']['name'])
+    #     char['pok_experience']=data['base_experience']
+    #     char['pok_spirit_img']=data['sprites']['front_shiny']
+    #     return(char)
+#     else:
+#         return 'Please make sure you enetered the right Pokemon'
+
+
+
+
+# flask db init
+
+# falsk db migrate
+
+# flask db upgrade
+
+
+
+
+
+
+
+ # if response.status_code == 200:
+        #     if form.validate_on_submit():
+        #         if form.add.data:
+        #             pokemon = Pokemon(poke_name, current_user.id)
+        #             print('added')
+        #             pokemon.save_pokemon()
+
+
+
+
+
+##profile 
+
+
+
+# {% extends 'home.html' %}
+# {% block content %}<h1>hELLLO</h1>
+# {% if char %}
+# <div class="container">
+#     <div id="data" data-flask-data="{{ json_char }}"></div>
+#     <div class="row justify-content-center">
+#             <div  id="card" class="card"
+#                 style="width:100%; height: 100%; border-radius: 20px;">
+#                 <div class="card-body ">
+#                     <div style="font-size: 40px; font-weight: bolder; text-align: center; color: black;">
+
+#                         <p>poke img :<img src="{{char['pok_spirit_img']}}" height="300px" width="300px"> </p>
+#                         <p>Name: {{char['pok_name']}}</p>
+#                         <p>HP: {{char['pok_hp']}}</p>
+#                         <p>Attack: {{char['pok_attack']}}</p>
+#                         <p>Defense: {{char['pok_defense']}}</p>
+#                         <p>Ability: {{char['pok_ability']}}</p>
+#                         <p>Experience: {{char['pok_experience']}}</p>
+
+#                         <button onclick="sendData()">Add</button>
+#                     </div>
+#                 </div>
+#             </div>
+#     </div>
+
+ 
+# </div>
+# {% endif %}
+# {% endblock %}
+
+
+
+
+
+
+
+
+# {% if char %}
+# <div class="container">
+#     <div class="row justify-content-center">
+#         <form  method="POST" action="{{ url_for('add_pok') }}" class="col-6">
+#             <div  id="card" class="card"
+#                 style="width:100%; height: 100%; border-radius: 20px;">
+#                 <div class="card-body ">
+#                     <div style="font-size: 40px; font-weight: bolder; text-align: center; color: black;">
+
+#                         <p>poke img :<img src="{{char['pok_spirit_img']}}" height="300px" width="300px"> </p>
+#                         <p>Name: {{char['pok_name']}}</p>
+#                         <p>HP: {{char['pok_hp']}}</p>
+#                         <p>Attack: {{char['pok_attack']}}</p>
+#                         <p>Defense: {{char['pok_defense']}}</p>
+#                         <p>Ability: {{char['pok_ability']}}</p>
+#                         <p>Experience: {{char['pok_experience']}}</p>
+
+#                         <a >
+#                             <div style="text-align: center; margin-top: 20px;">
+#                                 <button type="submit" class="btn btn-dark">Add</button>
+#                             </div>
+#                         </a>
+
+
+                       
+
+#                         <!-- <a href="/pokemon-add-pok" > <input type="submit" value="Add"></a> -->
+
+#                     </div>
+#                 </div>
+#             </div>
+#     </div>
+
+#     </form>
+# </div>
+# {% endif %}
+# {% endblock %}

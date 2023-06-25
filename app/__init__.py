@@ -2,7 +2,7 @@ from flask import Flask
 from config import Config 
 
 from .auth.routes import auth
-from .models import db, User
+from .models import db, User, Pokemon
 from flask_migrate import Migrate
 from flask_login import LoginManager
 
@@ -19,6 +19,9 @@ def load_user(user_id):
 
 
 db.init_app(app)
+
+login.login_view = 'auth.login' 
+
 migrate = Migrate(app, db)
 
 login.init_app(app)

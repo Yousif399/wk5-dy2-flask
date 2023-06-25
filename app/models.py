@@ -10,7 +10,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(50), nullable=False, unique=True)
     email = db.Column(db.String(50), nullable=False, unique=True)
     password = db.Column(db.String(), nullable=False)
-    post = db.relationship('Post', backref='author', lazy=True)
+    post = db.relationship('Post', backref='pok User', lazy=True)
 
 
     def __init__(self,username,email,password):
@@ -36,3 +36,30 @@ class Post(db.Model):
         self.body = body
         self.img_url = img_url
         self.user_id = user_id
+
+    def save_user(self):
+        db.session.add(self)
+        db.session.commit()
+
+
+
+class Pokemon(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, nullable=False, unique=False)
+   
+    user_id =db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    def __init__(self,name,user_id):
+        self.name=name
+        self.user_id = user_id
+    
+    def save_pokemon(self):
+        db.session.add(self)
+        db.session.commit()
+        
+        
+        
+        
+         # hp = db.Column(db.String, nullable=False, unique=True)
+    # attack = db.Column(db.String, nullable=False, unique=True)
+    # defence = db.Column(db.String, nullable=False, unique=True)

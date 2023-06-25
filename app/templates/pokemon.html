@@ -1,4 +1,4 @@
-{% include 'navbar.html' %}
+{% extends 'home.html' %}
 
 <head>
     <meta charset="UTF-8">
@@ -18,17 +18,19 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <form method="POST" class="col-6">
-            <div id="card" class="card" style="width:600px; height: 460px; border-radius: 20px;">
+        <form method="POST" action="{{ url_for('pokemon') }}" class="col-6">
+            <div id="card" class="card" style="width:100%; height: 100%; border-radius: 20px;">
                 <div class="card-body ">
                     <div style="margin-top: 150px;">
                         {{ form.hidden_tag() }}
 
                         {{ form.pokemon_name(class="form-control", placeholder='enter the pokemon name') }}
-                        <a href="">
+                        <a >
                             <div style="text-align: center; margin-top: 20px;">{{ form.search(class="btn btn-dark",
                                 placeholder='search') }}
+                            </div>
                         </a>
+                        
                     </div>
                 </div>
             </div>
@@ -36,24 +38,36 @@
 
     </form>
 </div>
+
+
+{% if char %}
 <div class="container">
     <div class="row justify-content-center">
-        <form method="POST" class="col-6">
-            <div id="card" class="card" style="width:100%; height: 100%; border-radius: 20px;">
+        <form  method="POST" action="{{ url_for('add_pok') }}" class="col-6">
+            <div action="/pokemon-add-pok" id="card" class="card"
+                style="width:100%; height: 100%; border-radius: 20px;">
                 <div class="card-body ">
                     <div style="font-size: 40px; font-weight: bolder; text-align: center; color: black;">
-                        {% if char %} 
 
-                        <p>Name: {{char['pok_name']}}</p>
-                        <p>HP: {{char['pok_hp']}}</p>
-                        <p>Attack: {{char['pok_attack']}}</p>
-                        <p>Defense: {{char['pok_defense']}}</p>
-                        <p>Ability: {{char['pok_ability']}}</p>
-                        <p>Experience: {{char['pok_ability']}}</p>
                         <p>poke img :<img src="{{char['pok_spirit_img']}}" height="300px" width="300px"> </p>
-                        {% endif %} 
+                        <p>Name: {{ char['pok_name'] }}</p>
+                        <p>HP: {{ char['pok_hp'] }}</p>
+                        <p>Attack: {{ char['pok_attack'] }}</p>
+                        <p>Defense: {{ char['pok_defense'] }}</p>
+                        <p>Ability: {{ char['pok_ability'] }}</p>
+                        <p>Experience: {{ char['pok_experience'] }}</p>
+
+                        <a>
+                            <div style="text-align: center; margin-top: 20px;">
+                               <button type="submit" name="add">{{ form.add(class="btn btn-dark", placeholder='add', value='Add') }}</button>
+                            </div>
+                        </a>
+
+
                       
-                    
+
+                        <!-- <a href="/pokemon-add-pok" > <input type="submit" value="Add"></a> -->
+
                     </div>
                 </div>
             </div>
@@ -61,7 +75,7 @@
 
     </form>
 </div>
-
+{% endif %}
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">

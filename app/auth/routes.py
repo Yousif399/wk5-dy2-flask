@@ -1,8 +1,8 @@
-from flask import Blueprint ,render_template, request, redirect, url_for
+from flask import Blueprint ,render_template, request, redirect, url_for, flash
 import requests
 from .forms import SignUp
 from .forms import LogIn
-from ..models import User
+from ..models import User, Pokemon
 from flask_login import current_user, login_user, logout_user
 from werkzeug.security import check_password_hash
 
@@ -21,10 +21,14 @@ def signup():
             username = form.username.data
             email = form.email.data
             password = form.password.data
+            #uer.query
             user = User(username, email, password)
             user.save_user()
-            if username == username:
-                print('username is used')
+            if username == user.username:
+                flash(f"Congrats {username}", "success")
+                
+                return redirect(url_for('auth.login'))
+                
             return redirect(url_for('auth.login'))
     return render_template('Signup.html',form=form)
 
@@ -36,22 +40,22 @@ def login():
             username = form.username.data
             password = form.password.data
             user = User.query.filter_by(username=username).first()
-            print(user)
             if user:
-                print(user.password)
                 if check_password_hash(user.password, password):
                 # if user.password == password: not secured
-                    print(f"welcome back {username}")
+                    flash(f"welcome back {username}", 'success')
                     login_user(user)
                     return redirect(url_for('home'))
                 else:
-                    print('wrong password')
+                    flash('wrong password,username', 'danger')
             else:
-                print('user doesn\'t exist')
+                flash('user doesn\'t exist', 'danger')
 
     return render_template('login.html', form=form)
 
 
 @auth.route('/logout')
 def logout():
+    logout_user()
+    flash('See you later', 'primary')
     return redirect(url_for('home'))

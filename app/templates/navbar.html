@@ -1,7 +1,20 @@
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for c, m in messages %}
+<div class="alert alert-{{c}} alert-dismissible fade show" role="alert">
+    <strong>{{m}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<ul class=flashes>
 
+    <li class="{{ category }}">{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
 <nav id="nav" class="navbar navbar-expand-lg">
     <div class="container-fluid">
-        <a class="navbar-brand"> <img
+        <a class="navbar-brand" href="/"> <img
                 src="https://i.etsystatic.com/40089303/r/il/afb200/4780638563/il_1588xN.4780638563_mgg3.jpg"
                 width="70px" height="70px"> </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -11,36 +24,35 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-family: bolder; font-size: 35px;">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    <a class="nav-link active" aria-current="page" href="{{url_for('home')}}">Home</a>
                 <li class="nav-item">
-                    <a class="nav-link" href="/pokemon">Pokemon</a>
+                    <a class="nav-link" href="{{url_for('pokemon')}}">Pokemon</a>
                 </li>
 
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Profile</a>
+                    <a class="nav-link" href="/profile">Profile</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Battle</a>
                 </li>
 
             </ul>
-            <form id="search_bar" class="d-flex" role="search">
-                <a id="currentuser"> {{ current_user.username }}</a>
-                <input id="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-               <a href=""><button class="btn btn-outline-success" >Search</button> </a>
-            </form>
+
             &nbsp;&nbsp;&nbsp;&nbsp;
             <div class="idbutton">
-                
-                <a href="/login"><button class="btn btn-outline-success">LOG IN</button></a>
+                {% if not current_user.username %}
+                <a href="{{url_for('auth.login')}}"><button class="btn btn-outline-success">LOG IN</button></a>
                 &nbsp;
-                <a href="/signup"><button class="btn btn-outline-success">SIGN UP</button></a>
-                {% if current_user.username %}
-                <a href="{{url_for('home')}}" button class="btn btn-outline-success">Log Out</button></a>
+                <a href="{{url_for('auth.signup')}}"><button class="btn btn-outline-success">SIGN UP</button></a>
+                
+                {% elif current_user.username %}
+                <a id="currentuser"> {{ current_user.username }}</a>
+                <a href="{{url_for('auth.logout')}}" button class="btn btn-outline-success">Log Out</button></a>
                 {% endif %}
+
             </div>
-            
+
 
         </div>
     </div>
