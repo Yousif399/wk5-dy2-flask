@@ -34,8 +34,17 @@ def pokemon():
                     char['pok_ability'] = data['abilities'][0]['ability']['name']
                     char['pok_experience'] = data['base_experience']
                     char['pok_spirit_img'] = data['sprites']['front_shiny']
+                    print('its working')
+                    q = Pokemon.query.filter_by(name = poke_name).first()
+                    print(q)
+                    if not q:
+                        flash('pokemon isn\'t in the data base')
+                        pokemon_data = Pokemon(char['pok_name'],char['pok_hp'],char['pok_attack'],char['pok_defense'],char['pok_spirit_img'])
+                        pokemon_data.data_base()
+                    p = Pokemon.query.filter_by(name = poke_name).first()
+                    print(p,'yes')
 
-                    return render_template('pokemon.html', form=form, char=char)
+                    return render_template('pokemon.html', form=form, char=char,p=p)
                 else:
                     flash('Please make sure you entered the right Pokemon', 'danger')
 
@@ -80,26 +89,26 @@ def pokemon():
 def profile():
     return render_template('profile.html')
 
-
-@app.route('/add-pok', methods=['POST'])
+@app.route('/add-pok/<int:pokemon_id>', methods=['POST'])
 @login_required
-def add_pok():
-    form = PokemonInfo(request.form)
-    print('pokemon_name:', form.pokemon_name.data)
-    print(form.errors)
-    if form.validate_on_submit():
-        poke_name = form.pokemon_name.data
-        pokemon = Pokemon(poke_name, current_user.id)
-        print('added')
-        pokemon.save_pokemon()
-        flash('Pokemon added successfully', 'success')
-        return redirect('/profile')  
-    else:
-        print('noo')
-        flash('Please make sure you enetered the right Pokemon','danger')                    
-        return redirect('/pokemon')
+def add_pok(pokemon_id):
+    print('helooooooo')
+    pokemon = Pokemon.query.filter_by().first()
+    pokemon.save_pokemon(current_user)
+    flash('Pokemon added successfully', 'success')
+    return redirect('/profile')  
 
+    print('noo')
+    flash('Please make sure you enetered the right Pokemon','danger')                    
+    return redirect('/pokemon')
 
+# form = PokemonInfo(request.form)
+    # print('pokemon_name:', form.pokemon_name.data)
+    # print(form.errors)
+    # if form.validate_on_submit():
+    #     poke_name = form.pokemon_name.data
+    #     pokemon = Pokemon(poke_name, current_user.id)
+    #     print('added')
 
 
 
@@ -110,7 +119,7 @@ def add_pok():
 #     # print(added_pokemon)
    
     
-
+# pokemon_id = pokemon_id
 
 
 

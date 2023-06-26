@@ -5,6 +5,13 @@ from werkzeug.security import generate_password_hash
 db = SQLAlchemy()
 
 
+adds = db.Table(
+    'adds',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), nullable=False),
+    db.Column('pokemon_id',db.Integer, db.ForeignKey('pokemon.id'), nullable=False)
+)
+
+
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), nullable=False, unique=True)
@@ -45,18 +52,32 @@ class Post(db.Model):
 
 class Pokemon(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, nullable=False, unique=False)
-   
-    user_id =db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    name = db.Column(db.String, nullable=False, unique=True,)
+    added = db.relationship('User',
+            secondary = 'adds',
+            backref = 'added',
+            lazy = 'dynamic'
+            )
 
     def __init__(self,name,user_id):
         self.name=name
         self.user_id = user_id
     
-    def save_pokemon(self):
+    def save_pokemon(self,user):
+        db.session.add(self)
+        self.added.append(user)
+        db.session.commit()
+
+    def data_base(self):
         db.session.add(self)
         db.session.commit()
         
+    def __init__(self,name,hp,attack,defense,img):
+        self.name = name
+        self.hp = hp
+        self.attack = attack
+        self.defense = defense
+        self.img = img
         
         
         
