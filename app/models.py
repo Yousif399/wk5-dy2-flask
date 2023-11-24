@@ -28,7 +28,6 @@ class User(db.Model, UserMixin):
     def save_user(self):
         db.session.add(self)
         db.session.commit()
-        
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -64,14 +63,16 @@ class Pokemon(db.Model):
         self.user_id = user_id
     
     def save_pokemon(self,user):
-        db.session.add(self)
+        # db.session.add(self)
         self.added.append(user)
         db.session.commit()
 
     def data_base(self):
         db.session.add(self)
         db.session.commit()
+
         
+      #add these to the pok class   
     def __init__(self,name,hp,attack,defense,img):
         self.name = name
         self.hp = hp
@@ -81,6 +82,4 @@ class Pokemon(db.Model):
         
         
         
-         # hp = db.Column(db.String, nullable=False, unique=True)
-    # attack = db.Column(db.String, nullable=False, unique=True)
-    # defence = db.Column(db.String, nullable=False, unique=True)
+    

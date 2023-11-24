@@ -6,6 +6,7 @@ from .forms import PokemonInfo
 
 from flask_login import login_required, current_user
 from .models import Pokemon, User
+from random import choice
 
 
 
@@ -61,37 +62,14 @@ def pokemon():
     return render_template('pokemon.html', form=form)
 
 
-# def pokemon():
-#     form = PokemonInfo()
-#     if request.method == 'POST':
-#         poke_name = form.pokemon_name.data
-#         url = f'https://pokeapi.co/api/v2/pokemon/{poke_name}'
-#         response = requests.get(url)
-#         if response.ok:
-#             data = response.json()
-#             char={}
-#             char['pok_name']=data['forms'][0]['name']
-#             char['pok_hp']=data['stats'][0]['base_stat']
-#             char['pok_attack']=data['stats'][1]['base_stat']
-#             char['pok_defense']=data['stats'][2]['base_stat']
-#             char['pok_ability']=(data['abilities'][0]['ability']['name'])
-#             char['pok_experience']=data['base_experience']
-#             char['pok_spirit_img']=data['sprites']['front_shiny']
-            
-#             return render_template('pokemon.html', form=form, char=char)
-#         else:
-#             flash('Please make sure you enetered the right Ppppppppokemon','danger')
-        
-#     return render_template('pokemon.html',form=form)
-
 @app.route('/profile', methods=['GET','POST'])
 @login_required
 def profile():
     return render_template('profile.html')
 
-@app.route('/add-pok/<int:pokemon_id>', methods=['POST'])
+@app.route('/add-pok', methods=['POST'])
 @login_required
-def add_pok(pokemon_id):
+def add_pok():
     print('helooooooo')
     pokemon = Pokemon.query.filter_by().first()
     pokemon.save_pokemon(current_user)
@@ -102,29 +80,36 @@ def add_pok(pokemon_id):
     flash('Please make sure you enetered the right Pokemon','danger')                    
     return redirect('/pokemon')
 
-# form = PokemonInfo(request.form)
-    # print('pokemon_name:', form.pokemon_name.data)
-    # print(form.errors)
-    # if form.validate_on_submit():
-    #     poke_name = form.pokemon_name.data
-    #     pokemon = Pokemon(poke_name, current_user.id)
-    #     print('added')
+
+@app.route('/battle', methods=['POST', 'GET'])
+@login_required
+def fight_user():
+    print('helooooooo')
+    users = User.query.all()
+    print(users)
+    return render_template('battle.html',users=users)
 
 
-
-    # formm = Add_pok()
-#     if request.method == 'POST':
-#         # add = form.add
-#     # added_pokemon = Pokemon.query.all()
-#     # print(added_pokemon)
-   
+@app.route('/fight/<int:uid>', methods=['POST', 'GET'])
+@login_required
+def attack_users(uid):
+    print('helooooooo')
+    opponent = User.query.get(uid)
+    winner = choice([opponent,current_user])
+    flash(f"{winner.username} in the winner !", 'success')
+    return redirect(url_for('fight_user'))
     
-# pokemon_id = pokemon_id
+   
 
 
 
- # x = pokemon()
-    # form = pokemon_info()
-    # poke_name= form.pokemon_name.data
-    # if x:
-    #     pokemon = Pokemon(poke_name,current_user.id)
+
+
+
+
+
+
+
+
+
+    

@@ -10,9 +10,6 @@
 </head>
 {% block content %}
 
-
-
-
 <h5 class="col-6" style="text-align: center; margin: 90px 0px 120px 0px;">Welcome to my pokemon page type an pokemon you
     want ANDget all the information about it</h5>
 
@@ -43,8 +40,8 @@
 {% if char %}
 <div class="container">
     <div class="row justify-content-center">
-        <form  method="POST" action="{{ url_for('add_pok/p.id') }}" class="col-6">
-            <div action="/pokemon-add-pok" id="card" class="card"
+        <form  method="POST" action="{{ url_for('add_pok') }}" class="col-6">
+            <div  id="card" class="card"
                 style="width:100%; height: 100%; border-radius: 20px;">
                 <div class="card-body ">
                     <div style="font-size: 40px; font-weight: bolder; text-align: center; color: black;">
@@ -62,11 +59,6 @@
                                <button type="submit" name="add">{{ form.add(class="btn btn-dark", placeholder='add', value='Add') }}</button>
                             </div>
                         </a>
-
-
-                      
-
-                        <!-- <a href="/pokemon-add-pok" > <input type="submit" value="Add"></a> -->
 
                     </div>
                 </div>

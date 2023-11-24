@@ -3,15 +3,7 @@ body{
     background-size:cover;
     background-size: 100%;
     /* background-repeat: no-repeat; */
-
-    
-
 }
-/* #nav{
-    background-image:url(https://wallpaperaccess.com/full/20997.jpg);
-    background-size: cover;
-    
- } */
 body div h2{
     color: rgba(213, 102, 23, 0.811);
     background-color: rgba(197, 75, 10, 0.121);
@@ -45,10 +37,3 @@ body h5{
     background-color: rgba(177, 77, 41, 0.468);
 }
 
-/* #search_bar{
-    
-}
-#search{
-    height: 40px;
-    margin-top: 10px;
-    background-color: rgba(136, 57, 48, 0.819);
