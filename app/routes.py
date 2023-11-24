@@ -71,10 +71,10 @@ def profile():
 @login_required
 def add_pok():
     print('helooooooo')
-    pokemon = Pokemon.query.filter_by().first()
+    pokemon = Pokemon.query.filter_by().first() #Pokemon.query.get(pokemon_id) --> I assume this is what we're going for?
     pokemon.save_pokemon(current_user)
     flash('Pokemon added successfully', 'success')
-    return redirect('/profile')  
+    return redirect(url_for('profile'))  
 
     print('noo')
     flash('Please make sure you enetered the right Pokemon','danger')                    
